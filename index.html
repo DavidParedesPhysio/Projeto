@@ -122,15 +122,6 @@
       color: #4a5568;
     }
 
-    /* Gestão de Visibilidade do Idioma - Corrigida */
-    .lang-content {
-      display: none;
-    }
-
-    .lang-content.active {
-      display: block;
-    }
-
     .section-title {
       font-size: 2.2rem;
       color: #ffffff;
@@ -295,13 +286,13 @@
         
         <!-- Alternador PT | EN -->
         <div class="lang-switch">
-          <button id="btn-pt" class="lang-btn active" type="button" onclick="switchLang('pt')">PT</button>
+          <button id="btn-pt" class="lang-btn active" type="button" onclick="setLanguage('pt')">PT</button>
           <span class="lang-divider">|</span>
-          <button id="btn-en" class="lang-btn" type="button" onclick="switchLang('en')">EN</button>
+          <button id="btn-en" class="lang-btn" type="button" onclick="setLanguage('en')">EN</button>
         </div>
 
         <!-- Conteúdo em Português -->
-        <div id="content-pt" class="lang-content active">
+        <div id="content-pt" style="display: block;">
           <h2 class="section-title">Sobre Mim</h2>
           <p class="lead-text">
             Fisioterapeuta Desportivo com mais de 4 anos de experiência clínica e no desporto de alta performance, a atuar na área da Grande Lisboa e disponível para projetos internacionais.
@@ -323,7 +314,7 @@
         </div>
 
         <!-- Content in English -->
-        <div id="content-en" class="lang-content">
+        <div id="content-en" style="display: none;">
           <h2 class="section-title">About Me</h2>
           <p class="lead-text">
             Sports Physiotherapist with 4+ years of clinical and high-performance experience, based in Lisbon and available for international opportunities.
@@ -395,31 +386,24 @@
     </div>
   </footer>
 
-  <!-- Script de Alternância de Idioma Corrigido -->
+  <!-- Script de Alternância Infalível -->
   <script>
-    function switchLang(lang) {
-      // Ocultar todos os blocos de conteúdo
-      var contents = document.querySelectorAll('.lang-content');
-      contents.forEach(function(el) {
-        el.classList.remove('active');
-      });
+    function setLanguage(lang) {
+      var ptBlock = document.getElementById('content-pt');
+      var enBlock = document.getElementById('content-en');
+      var btnPt = document.getElementById('btn-pt');
+      var btnEn = document.getElementById('btn-en');
 
-      // Desativar todos os botões
-      var buttons = document.querySelectorAll('.lang-btn');
-      buttons.forEach(function(btn) {
-        btn.classList.remove('active');
-      });
-
-      // Ativar o conteúdo e o botão correspondentes
-      var targetContent = document.getElementById('content- ' + lang); // tratado abaixo se houver espaço
-      var targetContentClean = document.getElementById('content-' + lang);
-      var targetBtn = document.getElementById('btn-' + lang);
-
-      if (targetContentClean) {
-        targetContentClean.classList.add('active');
-      }
-      if (targetBtn) {
-        targetBtn.classList.add('active');
+      if (lang === 'en') {
+        ptBlock.style.display = 'none';
+        enBlock.style.display = 'block';
+        btnPt.classList.remove('active');
+        btnEn.classList.add('active');
+      } else {
+        ptBlock.style.display = 'block';
+        enBlock.style.display = 'none';
+        btnEn.classList.remove('active');
+        btnPt.classList.add('active');
       }
     }
   </script>

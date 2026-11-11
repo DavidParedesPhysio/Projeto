@@ -1,411 +1,364 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html data-lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>David Paredes | Fisioterapeuta Desportivo</title>
-  
-  <style>
-    /* Variáveis Globais & Paleta Editorial Clínico */
-    :root {
-      --bg-dark: #121412;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-bg-hover: rgba(255, 255, 255, 0.06);
-      --text-main: #e2e8f0;
-      --text-muted: #9ca3af;
-      --accent-gold: #c5a059;
-      --border-color: rgba(197, 160, 89, 0.25);
-      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>David Paredes · Fisioterapeuta Desportivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700&display=swap">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+:root {
+  --bg: #0e1311;
+  --surface: #161d1a;
+  --ink: #eef2ee;
+  --muted: #9fb0a8;
+  --line: #26332e;
+  --brand: #0c3328;
+  --brand-ink: #f3f6f2;
+  --hero-gold: #dcb45c;
+  --gold: #d6ac4f;
+  --gold-ink: #141008;
+  --accent-text: #d6ac4f;
+  --tint: #1d2823;
+  --font-display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+  --font-body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
 
-    body {
-      font-family: var(--font-stack);
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      line-height: 1.6;
-    }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f0f2ee; --surface: #ffffff; --ink: #0e1311; --muted: #4d5e57; --line: #d6ddd8;
+    --brand: #0e3b2e; --gold: #c79a35; --gold-ink: #141008; --accent-text: #86620f; --tint: #e3e9e4;
+    color-scheme: light;
+  }
+}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+:root:not([data-lang="pt"]) .pt { display: none !important; }
+:root[data-lang="pt"] .en { display: none !important; }
 
-    /* Cabeçalho / Hero Section */
-    header {
-      padding: 60px 0 40px 0;
-      border-bottom: 1px solid var(--border-color);
-      text-align: center;
-    }
+* { box-sizing: border-box; }
+body {
+  margin: 0; padding: 0;
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.55;
+}
+.inner {
+  max-width: 600px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3, .price-num, .eyebrow, .tl b {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.hero {
+  background: var(--brand); color: var(--brand-ink);
+  padding-block: 28px 76px;
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 34px), 0 100%);
+}
+.hero .inner { display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+.topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; width: 100%; }
+.eyebrow { font-size: 1.05rem; font-weight: 600; letter-spacing: 0.18em; color: var(--hero-gold); }
+h1 { font-size: clamp(2.5rem, 11vw, 4rem); line-height: 0.95; font-weight: 700; margin: 8px 0 0; letter-spacing: 0.01em; }
+.lead { font-size: 1.1rem; max-width: 44ch; opacity: 0.95; margin-top: 4px; }
 
-    .brand-name {
-      font-size: 2.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #ffffff;
-      text-transform: uppercase;
-    }
+.lang { display: inline-flex; border: 1.5px solid var(--hero-gold); border-radius: 2px; overflow: hidden; }
+.lang button {
+  font-family: var(--font-display); font-weight: 700; font-size: 1rem; letter-spacing: 0.1em;
+  background: transparent; color: var(--brand-ink); border: 0; padding: 6px 14px; cursor: pointer;
+}
+.lang button[aria-pressed="true"] { background: var(--hero-gold); color: #141008; }
 
-    .brand-title {
-      font-size: 1.2rem;
-      color: var(--accent-gold);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-top: 8px;
-    }
+.btn {
+  font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; line-height: 1.2;
+  border: 1.5px solid var(--hero-gold); background: transparent; color: var(--brand-ink);
+  padding: 10px 18px; border-radius: 2px; cursor: pointer; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.btn.solid { background: var(--hero-gold); color: #141008; }
 
-    /* Secção Sobre Mim / About Me */
-    .about-section {
-      padding: 80px 0;
-      border-bottom: 1px solid var(--border-color);
-    }
+main { display: flex; flex-direction: column; gap: 48px; padding-block: 8px 56px; }
+h2 { font-size: 1.9rem; font-weight: 700; line-height: 1; margin: 0 0 20px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 14px; }
+h2::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-    .about-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
+.about-text { display: flex; flex-direction: column; gap: 14px; color: var(--ink); }
+.about-text p { margin: 0; }
+.about-text strong { color: var(--hero-gold); }
 
-    .about-image {
-      width: 100%;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--border-color);
-      background-color: #1a1c1a;
-      min-height: 250px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+.services { display: flex; flex-direction: column; gap: 20px; }
+.service {
+  background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--gold);
+  border-radius: 2px; padding: 22px; display: flex; flex-direction: column; gap: 16px;
+}
+.service-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.tag { display: block; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-text); }
+h3 { font-size: 1.65rem; font-weight: 700; line-height: 1.02; margin: 6px 0 0; letter-spacing: 0.03em; }
 
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-    }
+.price {
+  background: var(--gold); color: var(--gold-ink); padding: 8px 14px 7px;
+  display: flex; flex-direction: column; align-items: flex-end; line-height: 1; border-radius: 2px;
+}
+.price-num { font-size: 2.5rem; font-weight: 700; letter-spacing: 0.01em; }
+.price-unit { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 3px; }
 
-    /* Alternador de Idioma (PT | EN) */
-    .lang-switch {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 24px;
-    }
+ul.check { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+ul.check li { display: grid; grid-template-columns: 1.1rem 1fr; gap: 10px; align-items: start; }
+ul.check li::before { content: ""; width: 0.55rem; height: 0.55rem; margin-top: 0.5rem; background: var(--gold); }
+.d { display: block; color: var(--muted); font-size: 0.95rem; }
 
-    .lang-btn {
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      padding: 4px 8px;
-      transition: color 0.3s ease;
-      letter-spacing: 1px;
-    }
+.tl { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.tl li { display: flex; flex-direction: column; gap: 3px; }
+.tl b { font-size: 1.2rem; font-weight: 700; letter-spacing: 0.05em; color: var(--accent-text); line-height: 1; }
+.tl .d { font-size: 0.85rem; line-height: 1.3; }
 
-    .lang-btn.active {
-      color: var(--accent-gold);
-      border-bottom: 2px solid var(--accent-gold);
-    }
+.steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 2.6rem 1fr; gap: 14px; align-items: start; }
+.steps li::before {
+  content: counter(step); font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  width: 2.6rem; height: 2.6rem; border: 1.5px solid var(--gold); color: var(--accent-text); display: grid; place-items: center;
+}
+.steps b { display: block; font-weight: 600; }
 
-    .lang-divider {
-      color: #4a5568;
-    }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: var(--tint); border: 1px solid var(--line); border-radius: 2px; padding: 6px 14px; font-size: 0.92rem; font-weight: 500; }
 
-    .section-title {
-      font-size: 2.2rem;
-      color: #ffffff;
-      margin-bottom: 20px;
-      font-weight: 700;
-    }
+.area { border-left: 3px solid var(--gold); padding: 2px 0 2px 18px; }
+.area h2 { margin-bottom: 8px; }
+.area h2::after { display: none; }
 
-    .lead-text {
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: #e5e7eb;
-      margin-bottom: 16px;
-    }
+.cta { background: var(--brand); color: var(--brand-ink); padding: 30px 22px; border-radius: 2px; border-bottom: 3px solid var(--hero-gold); display: flex; flex-direction: column; gap: 14px; }
+.cta .big { font-family: var(--font-display); text-transform: uppercase; font-weight: 700; font-size: 2rem; line-height: 1; letter-spacing: 0.03em; }
+.cta .intro { opacity: 0.9; }
+.contact-row { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid rgba(243, 246, 242, 0.25); }
+.contact-row .label { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--hero-gold); font-weight: 600; }
+.contact-row .val { font-size: 1.25rem; font-weight: 600; user-select: all; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
-    .body-text {
-      font-size: 0.98rem;
-      line-height: 1.65;
-      color: var(--text-muted);
-      margin-bottom: 28px;
-    }
-
-    .credentials-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    .credential-card {
-      background: var(--card-bg);
-      border-left: 3px solid var(--accent-gold);
-      padding: 16px 20px;
-      border-radius: 4px;
-    }
-
-    .credential-card h3 {
-      font-size: 1.05rem;
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-
-    .credential-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* Secção de Serviços e Preços */
-    .services-section {
-      padding: 80px 0;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 40px;
-    }
-
-    .service-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: background 0.3s ease;
-    }
-
-    .service-card:hover {
-      background: var(--card-bg-hover);
-    }
-
-    .service-card h3 {
-      font-size: 1.3rem;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
-    .service-price {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent-gold);
-      margin-bottom: 16px;
-    }
-
-    .service-price span {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .service-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-bottom: 24px;
-    }
-
-    .btn-contact {
-      display: inline-block;
-      text-align: center;
-      background: transparent;
-      color: var(--accent-gold);
-      border: 1px solid var(--accent-gold);
-      padding: 12px 20px;
-      border-radius: 4px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .btn-contact:hover {
-      background: var(--accent-gold);
-      color: var(--bg-dark);
-    }
-
-    /* Rodapé */
-    footer {
-      padding: 40px 0;
-      text-align: center;
-      border-top: 1px solid var(--border-color);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* Responsivo */
-    @media (max-width: 900px) {
-      .about-container {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-      .credentials-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+footer { color: var(--muted); font-size: 0.85rem; padding-bottom: 8px; }
+footer b { color: var(--ink); font-weight: 600; }
+</style>
 </head>
 <body>
 
-  <!-- Cabeçalho -->
-  <header>
-    <div class="container">
-      <h1 class="brand-name">David Paredes</h1>
-      <div class="brand-title">Fisioterapeuta Desportivo</div>
-    </div>
-  </header>
-
-  <!-- Secção Sobre Mim / About Me -->
-  <section id="about" class="about-section">
-    <div class="container about-container">
-      
-      <!-- Imagem Editorial -->
-      <div class="about-image">
-        <img src="placa-bronze-david-paredes.jpg" alt="David Paredes - Fisioterapeuta Desportivo" onerror="this.style.display='none'" />
+<header class="hero">
+  <div class="inner">
+    <div class="topbar">
+      <span class="eyebrow"><span class="pt">David Paredes · Fisioterapeuta Desportivo</span><span class="en">David Paredes · Sports Physiotherapist</span></span>
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" data-set="pt" aria-pressed="true">PT</button>
+        <button type="button" data-set="en" aria-pressed="false">EN</button>
       </div>
+    </div>
+    <h1>
+      <span class="pt">Fisioterapia e treino personalizado, saúde e performance</span>
+      <span class="en">Physiotherapy & personalized training, health and performance</span>
+    </h1>
+    <p class="lead">
+      <span class="pt">Sessões de fisioterapia ao domicílio na Grande Lisboa e periferia, packs de acompanhamento online com planos de treino personalizados para onde estiver no mundo.</span>
+      <span class="en">Home physiotherapy sessions in Greater Lisbon and surrounding areas, online coaching packs with customized training plans wherever you are in the world.</span>
+    </p>
+    <a class="btn solid" href="https://wa.me/351910326002" target="_blank" rel="noopener noreferrer">
+      <span class="pt">Enviar mensagem por WhatsApp</span>
+      <span class="en">Message me on WhatsApp</span>
+    </a>
+  </div>
+</header>
 
-      <!-- Conteúdo Bilingue -->
-      <div class="about-content">
-        
-        <!-- Alternador PT | EN -->
-        <div class="lang-switch">
-          <button id="btn-pt" class="lang-btn active" type="button" onclick="setLanguage('pt')">PT</button>
-          <span class="lang-divider">|</span>
-          <button id="btn-en" class="lang-btn" type="button" onclick="setLanguage('en')">EN</button>
-        </div>
+<main class="inner">
+  <section id="about">
+    <h2><span class="pt">Sobre mim</span><span class="en">About me</span></h2>
+    <div class="about-text">
+      <p class="pt">Fisioterapeuta Desportivo com mais de 4 anos de experiência clínica e no desporto de alta performance, a atuar na área da Grande Lisboa e disponível para projetos internacionais.</p>
+      <p class="pt">Atualmente, exerço funções como Fisioterapeuta e Coordenador de Turno Clínico na <strong>Fisiogaspar</strong>, onde lidero uma equipa multidisciplinar e acompanho diretamente patologias musculoesqueléticas, pós-operatórios e processos de <em>return-to-sport</em>.</p>
+      <p class="pt">No âmbito do desporto de elite, sou Fisioterapeuta Oficial da <strong>Seleção Nacional de Padel Veteranos</strong> (acompanhando a equipa em competições mundiais desde 2023, bem como em torneios internacionais WPT e FIP Platinum) e colaborador da equipa médica da <strong>Seleção Nacional de Escalada de Competição (FPME)</strong>.</p>
 
-        <!-- Conteúdo em Português -->
-        <div id="content-pt" style="display: block;">
-          <h2 class="section-title">Sobre Mim</h2>
-          <p class="lead-text">
-            Fisioterapeuta Desportivo com mais de 4 anos de experiência clínica e no desporto de alta performance, a atuar na área da Grande Lisboa e disponível para projetos internacionais.
-          </p>
-          <p class="body-text">
-            Atualmente, exerço funções como Fisioterapeuta e Coordenador de Turno Clínico na <strong>Fisiogaspar</strong>, onde lidero uma equipa multidisciplinar e acompanho diretamente patologias musculoesqueléticas, pós-operatórios e processos de <em>return-to-sport</em>.
-          </p>
-          
-          <div class="credentials-grid">
-            <div class="credential-card">
-              <h3>Padel de Elite</h3>
-              <p>Fisioterapeuta Oficial da <strong>Seleção Nacional de Padel Veteranos</strong>, acompanhando a equipa em competições mundiais desde 2023, bem como em torneios internacionais do circuito WPT e FIP Platinum.</p>
-            </div>
-            <div class="credential-card">
-              <h3>Escalada de Competição</h3>
-              <p>Colaborador da Equipa Médica da <strong>Seleção Nacional de Escalada de Competição (FPME)</strong>, prestando suporte especializado em fisioterapia desportiva num contexto multidisciplinar.</p>
-            </div>
+      <p class="en">Sports Physiotherapist with 4+ years of clinical and high-performance experience, based in Lisbon and available for international opportunities.</p>
+      <p class="en">Currently working as a Physiotherapist and Clinical Shift Coordinator at <strong>Fisiogaspar</strong>, leading a multidisciplinary team while managing complex musculoskeletal, post-surgical, and return-to-sport rehabilitation plans.</p>
+      <p class="en">In elite sports, I serve as the Official Physiotherapist for the <strong>Portuguese Veterans National Padel Team</strong> (accompanying the team across global championships since 2023 and major WPT &amp; FIP Platinum events) and collaborate with the medical team for the <strong>Portuguese Competition Climbing National Team (FPME)</strong>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pt">Serviços</span><span class="en">Services</span></h2>
+    <div class="services">
+
+      <article class="service">
+        <div class="service-head">
+          <div>
+            <span class="tag"><span class="pt">Presencial · Grande Lisboa e periferia</span><span class="en">In person · Greater Lisbon</span></span>
+            <h3><span class="pt">Sessão ao domicílio</span><span class="en">Home session</span></h3>
           </div>
+          <div class="price"><span class="price-num">50€</span><span class="price-unit"><span class="pt">1 hora</span><span class="en">1 hour</span></span></div>
         </div>
+        <ul class="check">
+          <li><div><span class="pt">Sessão individual de 1 hora em tua casa</span><span class="en">One-hour individual session at your home</span><span class="d"><span class="pt">Avaliação, terapia manual e exercício terapêutico adaptados ao teu caso.</span><span class="en">Assessment, manual therapy and therapeutic exercise tailored to your case.</span></span></div></li>
+          <li><div><span class="pt">Exercícios para fazeres entre sessões</span><span class="en">Exercises to do between sessions</span></div></li>
+        </ul>
+      </article>
 
-        <!-- Content in English -->
-        <div id="content-en" style="display: none;">
-          <h2 class="section-title">About Me</h2>
-          <p class="lead-text">
-            Sports Physiotherapist with 4+ years of clinical and high-performance experience, based in Lisbon and available for international opportunities.
-          </p>
-          <p class="body-text">
-            Currently working as a Physiotherapist and Clinical Shift Coordinator at <strong>Fisiogaspar</strong>, leading a multidisciplinary team while managing complex musculoskeletal, post-surgical, and return-to-sport rehabilitation plans.
-          </p>
-          
-          <div class="credentials-grid">
-            <div class="credential-card">
-              <h3>Elite Padel</h3>
-              <p>Official Physiotherapist for the <strong>Portuguese Veterans National Padel Team</strong>, providing medical support across global championships since 2023 and major international events (WPT &amp; FIP Platinum).</p>
-            </div>
-            <div class="credential-card">
-              <h3>Competition Climbing</h3>
-              <p>Medical Team Collaborator for the <strong>Portuguese Competition Climbing National Team (FPME)</strong>, delivering specialized sports physiotherapy within an elite setting.</p>
-            </div>
+      <article class="service">
+        <div class="service-head">
+          <div>
+            <span class="tag"><span class="pt">Online · 8 semanas</span><span class="en">Online · 8 weeks</span></span>
+            <h3><span class="pt">Pack de acompanhamento online</span><span class="en">Online coaching pack</span></h3>
           </div>
+          <div class="price"><span class="price-num">100€</span><span class="price-unit"><span class="pt">pack completo</span><span class="en">full pack</span></span></div>
         </div>
+        <ul class="check">
+          <li><div><span class="pt">Avaliação inicial online</span><span class="en">Initial online assessment</span><span class="d"><span class="pt">45 minutos.</span><span class="en">45 minutes.</span></span></div></li>
+          <li><div><span class="pt">Plano de treino personalizado com progressões</span><span class="en">Customized training plan with progressions</span><span class="d"><span class="pt">Para 8 semanas.</span><span class="en">For 8 weeks.</span></span></div></li>
+          <li><div><span class="pt">Duas reavaliações online</span><span class="en">Two online reassessments</span><span class="d"><span class="pt">20 minutos cada, às 4 e às 8 semanas.</span><span class="en">20 minutes each, at 4 and 8 weeks.</span></span></div></li>
+        </ul>
+        <ol class="tl">
+          <li><b><span class="pt">Semana 0</span><span class="en">Week 0</span></b><span class="d"><span class="pt">Avaliação online 45 min</span><span class="en">Online assessment 45 min</span></span></li>
+          <li><b><span class="pt">Semana 4</span><span class="en">Week 4</span></b><span class="d"><span class="pt">Reavaliação online 20 min</span><span class="en">Online reassessment 20 min</span></span></li>
+          <li><b><span class="pt">Semana 8</span><span class="en">Week 8</span></b><span class="d"><span class="pt">Reavaliação online 20 min</span><span class="en">Online reassessment 20 min</span></span></li>
+        </ol>
+      </article>
 
+      <article class="service">
+        <div class="service-head">
+          <div>
+            <span class="tag"><span class="pt">Avaliação presencial · 8 semanas online</span><span class="en">In-person assessment · 8 weeks online</span></span>
+            <h3><span class="pt">Pack online com avaliação presencial</span><span class="en">Online pack with in-person assessment</span></h3>
+          </div>
+          <div class="price"><span class="price-num">135€</span><span class="price-unit"><span class="pt">pack completo</span><span class="en">full pack</span></span></div>
+        </div>
+        <ul class="check">
+          <li><div><span class="pt">Avaliação inicial presencial</span><span class="en">Initial in-person assessment</span><span class="d"><span class="pt">1 hora no teu domicílio.</span><span class="en">1 hour at your home.</span></span></div></li>
+          <li><div><span class="pt">Plano de treino personalizado com progressões</span><span class="en">Customized training plan with progressions</span><span class="d"><span class="pt">Para 8 semanas.</span><span class="en">For 8 weeks.</span></span></div></li>
+          <li><div><span class="pt">Duas reavaliações online</span><span class="en">Two online reassessments</span><span class="d"><span class="pt">20 minutos cada, às 4 e às 8 semanas.</span><span class="en">20 minutes each, at 4 and 8 weeks.</span></span></div></li>
+        </ul>
+        <ol class="tl">
+          <li><b><span class="pt">Semana 0</span><span class="en">Week 0</span></b><span class="d"><span class="pt">Presencial 1h</span><span class="en">In-person 1h</span></span></li>
+          <li><b><span class="pt">Semana 4</span><span class="en">Week 4</span></b><span class="d"><span class="pt">Reavaliação online 20 min</span><span class="en">Online reassessment 20 min</span></span></li>
+          <li><b><span class="pt">Semana 8</span><span class="en">Week 8</span></b><span class="d"><span class="pt">Reavaliação online 20 min</span><span class="en">Online reassessment 20 min</span></span></li>
+        </ol>
+      </article>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="pt">Como funciona</span><span class="en">How it works</span></h2>
+    <ol class="steps">
+      <li><div><b><span class="pt">Falas comigo</span><span class="en">You contact me</span></b><span class="d"><span class="pt">Conta-me o que se passa, o teu objetivo e onde estás.</span><span class="en">Tell me what is going on, your goal and location.</span></span></div></li>
+      <li><div><b><span class="pt">Escolhemos o serviço</span><span class="en">We choose the service</span></b><span class="d"><span class="pt">Sessão avulsa ao domicílio ou um dos packs de 8 semanas.</span><span class="en">A single session or one of the 8-week packs.</span></span></div></li>
+      <li><div><b><span class="pt">Começamos</span><span class="en">We start</span></b><span class="d"><span class="pt">Marcamos a primeira avaliação ou sessão num horário conveniente.</span><span class="en">We book the first assessment or session at a time that suits you.</span></span></div></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><span class="pt">Áreas de Atuação</span><span class="en">Specialties</span></h2>
+    <div class="chips">
+      <span class="chip"><span class="pt">Lesões desportivas</span><span class="en">Sports injuries</span></span>
+      <span class="chip"><span class="pt">Performance & Treino</span><span class="en">Performance & Training</span></span>
+      <span class="chip"><span class="pt">Dor lombar e cervical</span><span class="en">Low back & neck pain</span></span>
+      <span class="chip"><span class="pt">Recuperação pós-cirúrgica</span><span class="en">Post-surgical recovery</span></span>
+      <span class="chip"><span class="pt">Reabilitação neurológica</span><span class="en">Neurological rehabilitation</span></span>
+      <span class="chip"><span class="pt">Idosos e mobilidade</span><span class="en">Older adults & mobility</span></span>
+    </div>
+  </section>
+
+  <section class="area">
+    <h2><span class="pt">Onde atendo</span><span class="en">Where I work</span></h2>
+    <p><span class="pt">Sessões ao domicílio na Grande Lisboa e periferia. Atendimento online para qualquer parte do mundo.</span><span class="en">Home sessions in Greater Lisbon area. Online coaching worldwide.</span></p>
+  </section>
+
+  <section class="cta" id="contact">
+    <p class="big"><span class="pt">Pronto para começar?</span><span class="en">Ready to start?</span></p>
+    <p class="intro"><span class="pt">Envia mensagem por WhatsApp ou email com o teu objetivo. Respondo com a maior brevidade.</span><span class="en">Send a message on WhatsApp or email with your goal. I'll reply as soon as possible.</span></p>
+
+    <div class="contact-row">
+      <span class="label">WhatsApp</span>
+      <span class="val" id="phoneVal">+351 910 326 002</span>
+      <div class="actions">
+        <a class="btn solid" href="https://wa.me/351910326002" target="_blank" rel="noopener noreferrer"><span class="pt">Enviar mensagem por WhatsApp</span><span class="en">Send WhatsApp message</span></a>
+        <button type="button" class="btn" data-copy="+351910326002" data-target="phoneVal"><span class="pt">Copiar número</span><span class="en">Copy number</span></button>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <span class="label">Email</span>
+      <span class="val" id="mailVal">davidparedes.fisio@gmail.com</span>
+      <div class="actions">
+        <a class="btn solid" href="mailto:davidparedes.fisio@gmail.com"><span class="pt">Escrever email</span><span class="en">Write email</span></a>
+        <button type="button" class="btn" data-copy="davidparedes.fisio@gmail.com" data-target="mailVal"><span class="pt">Copiar</span><span class="en">Copy</span></button>
       </div>
     </div>
   </section>
 
-  <!-- Secção de Serviços -->
-  <section id="services" class="services-section">
-    <div class="container">
-      <h2 class="section-title" style="text-align: center;">Serviços &amp; Acompanhamento</h2>
-      
-      <div class="services-grid">
-        <!-- Serviço 1: Domicílio -->
-        <div class="service-card">
-          <div>
-            <h3>Fisioterapia ao Domicílio</h3>
-            <div class="service-price">€50 <span>/ sessão</span></div>
-            <p class="service-desc">Atendimento presencial individualizado na área da Grande Lisboa e periferia. Avaliação clínica, tratamento musculoesquelético e reabilitação funcional.</p>
-          </div>
-          <a href="https://wa.me/351910326002" target="_blank" class="btn-contact">Agendar Sessão</a>
-        </div>
-
-        <!-- Serviço 2: Online Coaching -->
-        <div class="service-card">
-          <div>
-            <h3>Online Coaching</h3>
-            <div class="service-price">€100 <span>/ mês</span></div>
-            <p class="service-desc">Acompanhamento à distância com plano de treino e reabilitação personalizado, reavaliação clínica online semanal/mensal e ajuste contínuo de carga.</p>
-          </div>
-          <a href="https://wa.me/351910326002" target="_blank" class="btn-contact">Saber Mais</a>
-        </div>
-
-        <!-- Serviço 3: Pack Híbrido -->
-        <div class="service-card">
-          <div>
-            <h3>Pack Híbrido</h3>
-            <div class="service-price">€135 <span>/ mês</span></div>
-            <p class="service-desc">Combinação de sessões presenciais ao domicílio com acompanhamento contínuo e plano de treino digital para máxima performance e recuperação.</p>
-          </div>
-          <a href="https://wa.me/351910326002" target="_blank" class="btn-contact">Aderir ao Pack</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Rodapé -->
   <footer>
-    <div class="container">
-      <p>&copy; David Paredes - Fisioterapia Desportiva &amp; Alta Performance</p>
-      <p style="margin-top: 8px; font-size: 0.85rem;">WA: +351 910 326 002 | davidparedes.fisio@gmail.com</p>
-    </div>
+    <b>David Paredes</b> · <span class="pt">Fisioterapia desportiva, neurológica e geriátrica</span><span class="en">Sports, neurological and geriatric physiotherapy</span>
   </footer>
+</main>
 
-  <!-- Script de Alternância Infalível -->
-  <script>
-    function setLanguage(lang) {
-      var ptBlock = document.getElementById('content-pt');
-      var enBlock = document.getElementById('content-en');
-      var btnPt = document.getElementById('btn-pt');
-      var btnEn = document.getElementById('btn-en');
+<script>
+(function () {
+  var root = document.documentElement;
+  var LABELS = { pt: ["Copiar", "Copiado", "Selecionado"], en: ["Copy", "Copied", "Selected"] };
+  var copyState = new WeakMap();
 
-      if (lang === 'en') {
-        ptBlock.style.display = 'none';
-        enBlock.style.display = 'block';
-        btnPt.classList.remove('active');
-        btnEn.classList.add('active');
-      } else {
-        ptBlock.style.display = 'block';
-        enBlock.style.display = 'none';
-        btnEn.classList.remove('active');
-        btnPt.classList.add('active');
-      }
+  function lang() { return root.getAttribute("data-lang") === "en" ? "en" : "pt"; }
+
+  function paintCopy(btn) {
+    var s = copyState.get(btn) || 0;
+    var spanPt = btn.querySelector('.pt');
+    var spanEn = btn.querySelector('.en');
+    if (spanPt && spanEn) {
+      spanPt.textContent = LABELS.pt[s];
+      spanEn.textContent = LABELS.en[s];
+    } else {
+      btn.textContent = LABELS[lang()][s];
     }
-  </script>
+  }
+
+  function apply() {
+    var l = location.hash.toLowerCase() === "#en" ? "en" : "pt";
+    root.setAttribute("data-lang", l);
+    root.lang = l === "en" ? "en" : "pt-PT";
+
+    document.querySelectorAll("[data-set]").forEach(function (b) {
+      var active = b.getAttribute("data-set") === l;
+      b.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    document.querySelectorAll("[data-copy]").forEach(paintCopy);
+  }
+
+  document.querySelectorAll("[data-set]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      location.hash = "#" + b.getAttribute("data-set");
+      apply();
+    });
+  });
+  window.addEventListener("hashchange", apply);
+
+  document.querySelectorAll("[data-copy]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var val = btn.getAttribute("data-copy");
+      function showCopied() {
+        copyState.set(btn, 1);
+        paintCopy(btn);
+        setTimeout(function() { copyState.set(btn, 0); paintCopy(btn); }, 1800);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(val).then(showCopied).catch(function() {
+          window.prompt(lang() === "en" ? "Copy this text:" : "Copia este texto:", val);
+        });
+      } else {
+        window.prompt(lang() === "en" ? "Copy this text:" : "Copia este texto:", val);
+      }
+    });
+  });
+
+  apply();
+})();
+</script>
+
 </body>
 </html>
